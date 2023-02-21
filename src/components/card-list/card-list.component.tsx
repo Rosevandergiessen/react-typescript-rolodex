@@ -2,19 +2,19 @@
 import './card-list.styles.css';
 import Card from '../card/card.component';
 
-import { Monster } from '../../App';
+import { Employee } from '../../App';
 
 type CardListProps = {
-  monsters: Monster[];
+  employees: Employee[];
 }
 
 
-const CardList = ({monsters}: CardListProps ) => (
+const CardList = ({employees}: CardListProps ) => (
   //const { monsters } = this.props;
       <div className='card-list'>
-        {monsters.map((monster) => {
+        {employees.map((employee) => {
           return(
-          <Card monster={monster}/>
+          <Card employee={employee}/>
         )})}
       </div>
 );

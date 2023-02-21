@@ -7,7 +7,7 @@ import './App.css';
 
 import { getData } from './utils/data.utils';
 
-export type Monster = {
+export type Employee = {
   id: string;
   name: string;
   email: string;
@@ -15,25 +15,25 @@ export type Monster = {
 
 const App = () => {
   const [searchField, setSearchField] = useState(''); // [value, setValue]
-  const [monsters, setMonsters] = useState<Monster[]>([]);
-  const [filteredMonsters, setFilteredMonsters] = useState(monsters);
+  const [employees, setEmployees] = useState<Employee[]>([]);
+  const [filteredEmployees, setFilteredEmployees] = useState(employees);
 
   useEffect(() => {
     const fetchUsers = async () => {
-      const users = await getData<Monster[]>('https://jsonplaceholder.typicode.com/users');
-      setMonsters(users);
+      const users = await getData<Employee[]>('https://jsonplaceholder.typicode.com/users');
+      setEmployees(users);
     };
 
     fetchUsers();
   }, []) //dependencies: in array what changes in order for the fuction to get run (in this case, never, only gets called on mount)
 
   useEffect(() => {
-    const newFilteredMonsters = monsters.filter((monster) => {
-      return monster.name.toLocaleLowerCase().includes(searchField);
+    const newFilteredEmployees = employees.filter((employee) => {
+      return employee.name.toLocaleLowerCase().includes(searchField);
     });
 
-    setFilteredMonsters(newFilteredMonsters);
-  }, [monsters, searchField])
+    setFilteredEmployees(newFilteredEmployees);
+  }, [employees, searchField])
 
   const onSearchChange = (event: ChangeEvent<HTMLInputElement>): void => {
     const searchFieldString = event.target.value.toLocaleLowerCase();
@@ -42,13 +42,13 @@ const App = () => {
 
   return(
     <div className="App">
-    <h1 className="app-title">Monster Rolodex</h1>
+    <h1 className="app-title">Our Team</h1>
     <SearchBox
-      className='monsters-search-box'
+      className='employees-search-box'
       onChangeHandler={onSearchChange}
-      placeholder='Search monsters'
+      placeholder='Search employee'
     />
-    <CardList monsters={filteredMonsters}  />
+    <CardList employees={filteredEmployees}  />
     </div>
   )
 };

@@ -1,18 +1,18 @@
 //import { Component } from "react";
-import { Monster } from '../../App';
+import { Employee } from '../../App';
 import './card.styles.css';
 
 type CardProps = {
-  monster: Monster;
+  employee: Employee;
 }
 
-const Card = ({monster}: CardProps) => {
-  const {id, name, email} = monster;
+const Card = ({employee}: CardProps) => {
+  const {id, name, email} = employee;
     return(
       <div className='card-container' key={id}>
             <img
               src={`https://robohash.org/${id}?set=set4&size=180x180`}
-              alt={`monster ${name}`} />
+              alt={`employee ${name}`} />
               <h2>{name}</h2>
               <p>{email}</p>
       </div>
